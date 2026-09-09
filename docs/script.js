@@ -4,26 +4,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("theme-toggle");
   const tooltip = document.getElementById("theme-tooltip");
 
-  // Set default theme (dark) or load from localStorage
-  const userPref = localStorage.getItem("theme") || "dark";
-  document.body.classList.toggle("light-theme", userPref === "light");
-
-  const updateTooltipText = () => {
-    tooltip.textContent = document.body.classList.contains("light-theme")
-      ? "click to switch to dark mode"
-      : "click to switch to light mode";
+  const applyTheme = (theme) => {
+    const isDark = theme === "dark";
+    document.body.classList.toggle("dark-theme", isDark);
+    toggleBtn.setAttribute("aria-pressed", String(isDark));
+    toggleBtn.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light theme" : "Switch to dark theme",
+    );
+    toggleBtn.textContent = isDark ? "☼" : "◐";
+    tooltip.textContent = isDark
+      ? "click to switch to light mode"
+      : "click to switch to dark mode";
   };
 
-  updateTooltipText();
+  const userPref = localStorage.getItem("theme");
+  applyTheme(userPref === "dark" ? "dark" : "light");
 
   toggleBtn.addEventListener("click", () => {
-    const isLight = document.body.classList.toggle("light-theme");
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-    updateTooltipText();
+    const nextTheme = document.body.classList.contains("dark-theme")
+      ? "light"
+      : "dark";
+    localStorage.setItem("theme", nextTheme);
+    applyTheme(nextTheme);
   });
 
   toggleBtn.addEventListener("mouseenter", () => {
-    updateTooltipText();
     tooltip.style.opacity = "1";
     tooltip.style.visibility = "visible";
   });
@@ -45,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.15 },
   );
 
   features.forEach((feature) => {
@@ -129,7 +135,7 @@ const scrollObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.1 }
+  { threshold: 0.1 },
 );
 
 document.querySelectorAll(".scroll-animate").forEach((el) => {
@@ -149,7 +155,7 @@ document
     if (!drawer.dataset.loaded) {
       try {
         const res = await fetch(
-          "https://api.github.com/repos/HERALDEXX/habit-tracker/releases/latest"
+          "https://api.github.com/repos/HERALDEXX/habit-tracker/releases/latest",
         );
         const data = await res.json();
         const assets = data.assets;
@@ -169,8 +175,7 @@ document
         };
 
         const instructionURLs = {
-          windows:
-            "https://heraldexx.github.io/habit-tracker/setup/windows.txt",
+          windows: "https://github.com/HERALDEXX/habit-tracker#quick-start",
           macos: "https://heraldexx.github.io/habit-tracker/setup/macos.txt",
           linux: "https://heraldexx.github.io/habit-tracker/setup/linux.txt",
         };
@@ -178,7 +183,7 @@ document
         for (const key in links) {
           const binaryBtn = document.getElementById(`download-${key}`);
           const instructionsBtn = document.getElementById(
-            `instructions-${key}`
+            `instructions-${key}`,
           );
 
           if (links[key]) {

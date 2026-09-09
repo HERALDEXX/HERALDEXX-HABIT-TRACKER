@@ -1,34 +1,67 @@
 <!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HERALDEXX Habit Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="scroll-animate">
-      <img src="assets/icons/icon.png" alt="App Icon" />
-      <h1>HERALDEXX Habit Tracker</h1>
-      <button id="theme-toggle" aria-label="Toggle theme">🌗</button>
-      <div id="theme-tooltip">click to switch to light mode</div>
+    <header class="hero scroll-animate">
+      <div class="hero-copy">
+        <div class="brand-lockup">
+          <img src="assets/icons/icon.png" alt="App Icon" />
+          <span>HERALDEXX Habit Tracker</span>
+        </div>
+        <p class="eyebrow">A quieter way to build momentum</p>
+        <h1>Small habits.<br /><em>Real progress.</em></h1>
+        <button id="theme-toggle" aria-label="Toggle theme">☼</button>
+        <div id="theme-tooltip">click to switch to light mode</div>
+        <p class="tagline">
+          A focused, local-first habit tracker for people who want useful
+          feedback without the noise.
+        </p>
+        <div
+          id="announcement-feed"
+          class="scroll-animate typewriter-feed"
+        ></div>
+      </div>
 
-      <p class="tagline">
-        A sleek, cross-platform habit tracker for everyone — with source code
-        for devs.<strong
-          ><br /><br />Dark mode? <span style="font-size: 1.5em">✅</span
-          ><br />Light mode? <span style="font-size: 1.5em">✅</span><br />Cool
-          Charts? Yup.<br />Customizable?
-          <span style="font-size: 1.5em">💯</span><br />Works on all platforms?
-          You bet.</strong
-        >
-      </p>
-      <div id="announcement-feed" class="scroll-animate typewriter-feed"></div>
+      <div class="hero-visual" aria-label="Habit tracker preview">
+        <div class="preview-bar">
+          <span></span><span></span><span></span><small>today</small>
+        </div>
+        <div class="preview-heading">
+          <span>Daily check-in</span><strong>July 23</strong>
+        </div>
+        <div class="preview-progress"><span style="width: 72%"></span></div>
+        <div class="preview-stat">
+          <strong>72%</strong><span>consistency this week</span>
+        </div>
+        <div class="preview-habit">
+          <span class="habit-check">✓</span>
+          <div><strong>Drink water</strong><small>Every day</small></div>
+          <b>7 day streak</b>
+        </div>
+        <div class="preview-habit">
+          <span class="habit-check is-muted">✓</span>
+          <div><strong>Study Python</strong><small>Every day</small></div>
+          <b>4 day streak</b>
+        </div>
+        <div class="preview-chart">
+          <span style="height: 34%"></span><span style="height: 58%"></span
+          ><span style="height: 48%"></span><span style="height: 76%"></span
+          ><span style="height: 65%"></span><span style="height: 88%"></span
+          ><span style="height: 72%"></span>
+        </div>
+      </div>
     </header>
 
     <section id="download-section">
